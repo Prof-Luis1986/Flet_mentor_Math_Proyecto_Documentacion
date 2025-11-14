@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora del Proyecto FletMentor_MAT_1.0</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #8B1538 0%, #A91D3A 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        h1 { color: #8B1538; font-size: 2.5em; margin-bottom: 10px; }
+        .subtitle { color: #A91D3A; font-size: 1.2em; font-weight: 300; }
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        h2 {
+            color: #8B1538;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #A91D3A;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #A91D3A;
+            font-size: 1.4em;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            border-left: 3px solid #A91D3A;
+            margin: 20px 0;
+        }
+        .timeline-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 5px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #8B1538;
+            border: 3px solid white;
+        }
+        .date {
+            background: #8B1538;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .task-list { list-style: none; padding-left: 0; }
+        .task-list li {
+            padding: 10px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #A91D3A;
+            border-radius: 5px;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .team-card {
+            background: linear-gradient(135deg, #8B1538 0%, #A91D3A 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(139, 21, 56, 0.3);
+        }
+        .team-card h4 {
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            border-bottom: 2px solid white;
+            padding-bottom: 8px;
+        }
+        .team-card ul { list-style: none; }
+        .team-card li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .team-card li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #8B1538 0%, #A91D3A 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .highlight-box strong { font-size: 1.1em; }
+        .tips-box {
+            background: #fff5f5;
+            border: 2px solid #A91D3A;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .tips-box h4 { color: #8B1538; margin-bottom: 10px; }
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        @media print {
+            body { background: white; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📘 Bitácora del Proyecto FletMentor_MAT_1.0</h1>
+            <p class="subtitle">Chatbot educativo de matemáticas con HTML, CSS, JavaScript y Ollama</p>
+        </header>
+
+        <!-- DESCRIPCIÓN GENERAL -->
+        <div class="section">
+            <h2>📋 Descripción General del Proyecto</h2>
+            <p>
+                <strong>FletMentor_MAT_1.0</strong> es un <strong>chatbot educativo de matemáticas</strong> diseñado para 
+                acompañar a estudiantes desde <strong>primaria hasta universidad</strong>. Funciona como un tutor conversacional 
+                que responde dudas, explica procedimientos paso a paso, señala errores comunes y propone ejercicios similares 
+                para reforzar el aprendizaje.
+            </p>
+            <p>
+                La interfaz está construida con <strong>HTML, CSS y JavaScript</strong>, utiliza <strong>MathJax</strong> para 
+                mostrar ecuaciones en formato LaTeX y se conecta a un modelo de lenguaje local 
+                (<strong>qwen2.5:3b</strong>) ejecutado con <strong>Ollama</strong>. El estudiante puede seleccionar su nivel 
+                (Primaria, Secundaria, Preparatoria, Universidad) y, a partir de esto, el chatbot ajusta la profundidad de las 
+                explicaciones.
+            </p>
+            <div class="highlight-box">
+                <strong>🎯 Objetivo Principal:</strong>
+                Desarrollar un tutor matemático conversacional que no solo dé resultados, sino que 
+                <strong>enseñe</strong> mediante explicaciones estructuradas, ejemplos claros y ejercicios adicionales.
+            </div>
+            <p>
+                El proyecto se desarrolló del <strong>1 de septiembre al 27 de noviembre de 2025</strong>, con 
+                <strong>entregas de avance cada martes a las 18:00 horas</strong>.
+            </p>
+        </div>
+
+        <!-- EVOLUCIÓN Y COMPARACIÓN -->
+        <div class="section">
+            <h2>🧩 Evolución del Proyecto: De FletMentor a FletMentor_MAT_1.0</h2>
+
+            <h3>📘 Versión Previa: FletMentor (Python + Flet, sin IA)</h3>
+            <p>
+                Antes de FletMentor_MAT_1.0, el equipo desarrolló <strong>FletMentor</strong>, un software educativo 
+                interactivo orientado a <strong>matemáticas básicas y habilidades lingüísticas en primaria</strong>. 
+                Esta primera versión integraba <strong>gamificación</strong> como estrategia para mejorar la motivación 
+                de los estudiantes y se evaluó con grupos de <strong>2° y 4° de primaria</strong> en el Instituto Simón Bolívar.
+            </p>
+            <p>
+                FletMentor fue desarrollado con <strong>Python y Flet</strong> y se estructuró alrededor de dos módulos principales:
+            </p>
+            <ul class="task-list">
+                <li><strong>NumAleatorio:</strong> operaciones de suma, resta, multiplicación y división generadas aleatoriamente.</li>
+                <li><strong>Lluvia de Letras:</strong> organización de palabras para reforzar alfabetización y formación de vocabulario.</li>
+            </ul>
+            <p>
+                La investigación sobre esta versión se planteó como un estudio <strong>aplicado con enfoque cuasi-experimental</strong>, 
+                incluyendo diagnóstico previo, implementación del software, observación estructurada, pruebas posteriores y encuestas de 
+                satisfacción a estudiantes y docentes.
+            </p>
+            <div class="tips-box">
+                <h4>🔍 Dato Importante</h4>
+                <p>
+                    En esta etapa <strong>no se utilizó inteligencia artificial</strong>.  
+                    Todos los ejercicios, operaciones y palabras fueron <strong>diseñados y programados manualmente</strong> por el equipo.  
+                    FletMentor era un software con juegos fijos, <strong>no un chatbot conversacional</strong>.
+                </p>
+            </div>
+
+            <h3>🤖 Nueva Generación: FletMentor_MAT_1.0 como Chatbot Educativo</h3>
+            <p>
+                A partir de la experiencia con FletMentor, se decidió dar un salto hacia una herramienta más flexible y potente: 
+                <strong>FletMentor_MAT_1.0</strong>. Esta nueva versión se transforma en un <strong>chatbot matemático</strong> que:
+            </p>
+            <ul class="task-list">
+                <li>Dialoga con el estudiante sobre dudas de matemáticas.</li>
+                <li>Explica procedimientos paso a paso, de forma similar a un profesor.</li>
+                <li>Incluye una sección de <strong>errores comunes</strong> para reforzar conceptos clave.</li>
+                <li>Ofrece un <strong>ejercicio similar</strong> al final, para practicar lo aprendido.</li>
+                <li>Se adapta a cuatro niveles: <strong>Primaria, Secundaria, Preparatoria y Universidad</strong>.</li>
+                <li>Utiliza <strong>IA local</strong> mediante Ollama para generar respuestas en tiempo real.</li>
+            </ul>
+
+            <h3>⚖️ Comparación General</h3>
+            <ul class="task-list">
+                <li>
+                    <strong>Enfoque:</strong><br>
+                    Antes: actividades gamificadas fijas (juegos específicos).<br>
+                    Ahora: chatbot educativo que responde dudas abiertas y acompaña el proceso de razonamiento.
+                </li>
+                <li>
+                    <strong>Tecnología:</strong><br>
+                    Antes: Python + Flet (aplicación tipo escritorio).<br>
+                    Ahora: HTML + CSS + JavaScript + MathJax + Ollama (web conversacional).
+                </li>
+                <li>
+                    <strong>Contenido:</strong><br>
+                    Antes: ejercicios estáticos programados por el equipo.<br>
+                    Ahora: explicaciones y ejercicios generados en tiempo real con IA, respetando una estructura pedagógica.
+                </li>
+                <li>
+                    <strong>Alcance:</strong><br>
+                    Antes: estudiantes de primaria (2° y 4° grado).<br>
+                    Ahora: estudiantes desde primaria hasta nivel universitario.
+                </li>
+                <li>
+                    <strong>Rol del estudiante:</strong><br>
+                    Antes: jugador que responde actividades definidas.<br>
+                    Ahora: aprendiz activo que dialoga con un tutor virtual.
+                </li>
+            </ul>
+
+            <h3>🏁 Conclusión de la Justificación</h3>
+            <p>
+                La transición de FletMentor a <strong>FletMentor_MAT_1.0</strong> representa una evolución natural basada en la 
+                experiencia previa: se parte de juegos educativos exitosos y se avanza hacia un <strong>tutor matemático 
+                conversacional</strong>, capaz de adaptarse a más contextos, más niveles y más necesidades de los estudiantes.
+            </p>
+            <p>
+                FletMentor_MAT_1.0 no reemplaza la idea original, sino que la <strong>amplía</strong> y la potencia con el uso de 
+                tecnologías web y <strong>IA local</strong>, manteniendo siempre el enfoque de aprendizaje significativo y acompañado.
+            </p>
+        </div>
+
+        <!-- EQUIPO DE TRABAJO -->
+        <div class="section">
+            <h2>👥 Equipo de Trabajo y Roles</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <h4>👩‍💻 Dannae – Desarrolladora Principal (Líder)</h4>
+                    <ul>
+                        <li>Maquetación principal del chat en HTML.</li>
+                        <li>Diseño visual y responsivo con CSS.</li>
+                        <li>Implementación de la lógica principal en JavaScript.</li>
+                        <li>Integración de MathJax en el proyecto.</li>
+                        <li>Coordinación general del avance del equipo.</li>
+                    </ul>
+                </div>
+
+                <div class="team-card">
+                    <h4>🧑‍💻 Emmanuel – Desarrollador Secundario (Líder Técnico)</h4>
+                    <ul>
+                        <li>Configuración y pruebas del servidor Ollama.</li>
+                        <li>Implementación de la función de streaming de respuestas.</li>
+                        <li>Ajuste de parámetros por nivel (Primaria, Secundaria, etc.).</li>
+                        <li>Manejo de errores y depuración de JavaScript.</li>
+                        <li>Optimización del envío de prompts y parseo de JSON.</li>
+                    </ul>
+                </div>
+
+                <div class="team-card">
+                    <h4>📑 Diana – Documentadora Principal</h4>
+                    <ul>
+                        <li>Redacción de la bitácora técnica del proyecto.</li>
+                        <li>Elaboración del manual técnico.</li>
+                        <li>Elaboración del manual de usuario.</li>
+                        <li>Registro de decisiones de diseño y estructura del tutor.</li>
+                        <li>Selección de capturas de pantalla y ejemplos de uso.</li>
+                    </ul>
+                </div>
+
+                <div class="team-card">
+                    <h4>🧪 Uriel – Tester y Documentador</h4>
+                    <ul>
+                        <li>Pruebas funcionales del chat y del render de MathJax.</li>
+                        <li>Detección y reporte de errores (bugs) en diferentes navegadores.</li>
+                        <li>Pruebas con diferentes niveles y tipos de preguntas.</li>
+                        <li>Verificación de la experiencia en dispositivos móviles.</li>
+                        <li>Apoyo en la redacción del reporte final de pruebas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRONOGRAMA / BITÁCORA SEMANAL -->
+        <div class="section">
+            <h2>📅 Bitácora Semanal de Desarrollo (1 septiembre – 27 noviembre 2025)</h2>
+            <p>
+                A continuación se presenta la bitácora de trabajo, organizada por semana, considerando que los 
+                <strong>avances formales se entregaban cada martes a las 18:00 horas</strong>.
+            </p>
+
+            <div class="timeline">
+                <!-- Semana 1 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 1 – Revisión martes 2 de septiembre</div>
+                    <h3>Inicio del Proyecto y Configuración Inicial</h3>
+                    <ul class="task-list">
+                        <li>Definición del alcance de FletMentor_MAT_1.0 como chatbot educativo de matemáticas.</li>
+                        <li>Creación de la estructura base del proyecto: <strong>index.html</strong>, <strong>style.css</strong>, <strong>script.js</strong>.</li>
+                        <li>Instalación de <strong>Ollama</strong> y prueba del endpoint <code>http://localhost:11434/api/generate</code>.</li>
+                        <li><strong>Dannae:</strong> estructura HTML inicial del chat.</li>
+                        <li><strong>Emmanuel:</strong> verificación de instalación de Ollama y pruebas simples de consola.</li>
+                        <li><strong>Diana:</strong> apertura del documento maestro de bitácora.</li>
+                        <li><strong>Uriel:</strong> prueba de carga del esqueleto de la página en distintos navegadores.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 2 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 2 – Revisión martes 9 de septiembre</div>
+                    <h3>Diseño de la Interfaz del Chat</h3>
+                    <ul class="task-list">
+                        <li>Diseño de las burbujas de chat para usuario y tutor.</li>
+                        <li>Implementación del <strong>selector de nivel</strong> (Primaria, Secundaria, Preparatoria, Universidad).</li>
+                        <li>Checkbox <strong>“Mostrar mientras escribe”</strong> para activar/desactivar streaming visual.</li>
+                        <li><strong>Dannae:</strong> maquetación y estilos de la interfaz (header, controles, área de chat e input).</li>
+                        <li><strong>Emmanuel:</strong> conexión de los controles HTML con el código JavaScript.</li>
+                        <li><strong>Diana:</strong> registro de decisiones de diseño (colores, estructura y usabilidad).</li>
+                        <li><strong>Uriel:</strong> pruebas de responsividad en diferentes resoluciones de pantalla.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 3 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 3 – Revisión martes 16 de septiembre</div>
+                    <h3>Integración de MathJax y Estructura Pedagógica del Prompt</h3>
+                    <ul class="task-list">
+                        <li>Integración de <strong>MathJax</strong> para mostrar ecuaciones en LaTeX.</li>
+                        <li>Definición del mensaje de bienvenida del tutor FletMentor_MAT_1.0.</li>
+                        <li>Creación de la función <strong>construirPrompt()</strong> con 6 apartados fijos:
+                            idea general, método, desarrollo paso a paso, errores comunes, resultado final y ejercicio similar.
+                        </li>
+                        <li><strong>Dannae:</strong> configuración de scripts de MathJax e inserción del contenedor del chat.</li>
+                        <li><strong>Emmanuel:</strong> diseño del prompt pedagógico que se envía al modelo.</li>
+                        <li><strong>Diana:</strong> documentación de la estructura didáctica de la respuesta.</li>
+                        <li><strong>Uriel:</strong> pruebas con expresiones como fracciones, potencias e integrales.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 4 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 4 – Revisión martes 23 de septiembre</div>
+                    <h3>Mensajes Dinámicos y Construcción del DOM</h3>
+                    <ul class="task-list">
+                        <li>Implementación de <strong>crearMensaje()</strong> y <strong>agregarMensaje()</strong> para construir mensajes dinámicamente.</li>
+                        <li>Diferenciación visual de mensajes de usuario y del chatbot (emojis y colores).</li>
+                        <li>Auto-scroll al último mensaje del chat.</li>
+                        <li><strong>Dannae:</strong> diseño de las clases CSS para mensajes de usuario y tutor.</li>
+                        <li><strong>Emmanuel:</strong> lógica de inserción de mensajes y desplazamiento automático.</li>
+                        <li><strong>Diana:</strong> diagrama de flujo del ciclo mensaje→respuesta.</li>
+                        <li><strong>Uriel:</strong> pruebas con conversaciones largas.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 5 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 5 – Revisión martes 30 de septiembre</div>
+                    <h3>Conexión con Ollama (Primera Versión)</h3>
+                    <ul class="task-list">
+                        <li>Implementación de la petición <code>fetch</code> al endpoint <code>/api/generate</code> de Ollama.</li>
+                        <li>Envío del prompt completo y recepción de respuestas en formato JSON.</li>
+                        <li>Manejo de errores básicos de conexión (códigos HTTP y “Failed to fetch”).</li>
+                        <li><strong>Dannae:</strong> integración de la función <strong>enviarMensaje()</strong> con la interfaz.</li>
+                        <li><strong>Emmanuel:</strong> parseo de las líneas JSON recibidas desde Ollama.</li>
+                        <li><strong>Diana:</strong> descripción del ciclo petición–respuesta.</li>
+                        <li><strong>Uriel:</strong> pruebas cuando el servidor de Ollama no está activo.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 6 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 6 – Revisión martes 7 de octubre</div>
+                    <h3>Streaming de Texto y Loader</h3>
+                    <ul class="task-list">
+                        <li>Lectura de la respuesta por fragmentos usando <strong>response.body.getReader()</strong>.</li>
+                        <li>Actualización en vivo del mensaje del tutor mientras “escribe”.</li>
+                        <li>Implementación del indicador <strong>“FletMentor está pensando…”</strong>.</li>
+                        <li><strong>Dannae:</strong> diseño del loader y animación de puntos.</li>
+                        <li><strong>Emmanuel:</strong> integración del streaming línea por línea en el contenido del mensaje.</li>
+                        <li><strong>Diana:</strong> documentación del comportamiento de streaming.</li>
+                        <li><strong>Uriel:</strong> pruebas con preguntas largas y varias consultas seguidas.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 7 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 7 – Revisión martes 14 de octubre</div>
+                    <h3>Parámetros por Nivel Educativo</h3>
+                    <ul class="task-list">
+                        <li>Implementación de <strong>getOpcionesPorNivel()</strong> para configurar parámetros según nivel.</li>
+                        <li>Ajuste de <strong>num_ctx</strong> y <strong>num_predict</strong> para primaria, secundaria, preparatoria y universidad.</li>
+                        <li>Pruebas de calidad de respuesta según el nivel seleccionado.</li>
+                        <li><strong>Dannae:</strong> conexión del selector de nivel con las opciones enviadas al modelo.</li>
+                        <li><strong>Emmanuel:</strong> pruebas de respuestas en cada nivel.</li>
+                        <li><strong>Diana:</strong> registro de diferencias esperadas entre niveles.</li>
+                        <li><strong>Uriel:</strong> pruebas con la misma pregunta en distintos niveles.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 8 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 8 – Revisión martes 21 de octubre</div>
+                    <h3>Limpiar Chat y Formateo de Respuestas</h3>
+                    <ul class="task-list">
+                        <li>Implementación del botón <strong>“Limpiar chat”</strong> conservando el mensaje de bienvenida.</li>
+                        <li>Creación de <strong>formatearRespuesta()</strong> para interpretar negritas y saltos de línea.</li>
+                        <li>Mejora de la legibilidad de las respuestas (secciones, listas, énfasis).</li>
+                        <li><strong>Dannae:</strong> función <strong>limpiarChat()</strong> y estilos de botón secundario.</li>
+                        <li><strong>Emmanuel:</strong> lógica de formateo tipo markdown a HTML.</li>
+                        <li><strong>Diana:</strong> explicación de la importancia del formato para la comprensión.</li>
+                        <li><strong>Uriel:</strong> pruebas con respuestas muy extensas.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 9 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 9 – Revisión martes 28 de octubre</div>
+                    <h3>Depuración y Manejo de Errores</h3>
+                    <ul class="task-list">
+                        <li>Uso de <strong>try/catch</strong> alrededor del parseo de JSON en el streaming.</li>
+                        <li>Mensajes amigables cuando no hay conexión con Ollama.</li>
+                        <li>Captura de errores globales en <strong>window.error</strong> y <strong>unhandledrejection</strong>.</li>
+                        <li><strong>Dannae:</strong> diseño de los mensajes de error mostrados al usuario.</li>
+                        <li><strong>Emmanuel:</strong> manejo de líneas mal formateadas en la respuesta del modelo.</li>
+                        <li><strong>Diana:</strong> documentación de los principales tipos de errores.</li>
+                        <li><strong>Uriel:</strong> simulación de desconexiones y fallos de red.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 10 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 10 – Revisión martes 4 de noviembre</div>
+                    <h3>Optimización Visual y Responsiva</h3>
+                    <ul class="task-list">
+                        <li>Ajustes de colores, sombras, bordes y espaciados generales.</li>
+                        <li>Revisión del comportamiento responsivo en pantallas pequeñas.</li>
+                        <li>Definición de límites de ancho para las burbujas de mensajes.</li>
+                        <li><strong>Dannae:</strong> pulido final del diseño CSS.</li>
+                        <li><strong>Emmanuel:</strong> pruebas de compatibilidad en distintos navegadores.</li>
+                        <li><strong>Diana:</strong> elaboración de una breve guía de estilo.</li>
+                        <li><strong>Uriel:</strong> pruebas en celular y tablet.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 11 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 11 – Revisión martes 11 de noviembre</div>
+                    <h3>MathJax en Streaming y Estabilidad</h3>
+                    <ul class="task-list">
+                        <li>Ajuste de la llamada a <strong>MathJax.typesetPromise()</strong> para contenido parcial.</li>
+                        <li>Verificación de que las fórmulas se rendericen correctamente al final del mensaje.</li>
+                        <li>Manejo cuidadoso de fragmentos de LaTeX incompletos durante el streaming.</li>
+                        <li><strong>Dannae:</strong> integración de MathJax con el contenido dinámico.</li>
+                        <li><strong>Emmanuel:</strong> orden correcto de actualización del DOM y llamado a MathJax.</li>
+                        <li><strong>Diana:</strong> explicación del flujo texto → HTML → MathJax.</li>
+                        <li><strong>Uriel:</strong> pruebas con problemas matemáticos complejos.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 12 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 12 – Revisión martes 18 de noviembre</div>
+                    <h3>Pruebas de Uso Continuo y Documentación</h3>
+                    <ul class="task-list">
+                        <li>Pruebas de sesiones largas con múltiples preguntas.</li>
+                        <li>Ajustes finales del prompt para mantener siempre la estructura de 6 apartados.</li>
+                        <li>Avance importante en el manual técnico y el manual de usuario.</li>
+                        <li><strong>Dannae:</strong> revisión del comportamiento en sesiones prolongadas.</li>
+                        <li><strong>Emmanuel:</strong> ajustes menores del prompt pedagógico.</li>
+                        <li><strong>Diana:</strong> redacción de secciones clave de los manuales.</li>
+                        <li><strong>Uriel:</strong> reporte de pruebas de estrés y tiempos de respuesta.</li>
+                    </ul>
+                </div>
+
+                <!-- Semana 13 -->
+                <div class="timeline-item">
+                    <div class="date">Semana 13 – Revisión final martes 25 de noviembre</div>
+                    <h3>Cierre del Desarrollo y Preparación de Entrega (Proyecto concluido 27 de noviembre)</h3>
+                    <ul class="task-list">
+                        <li>Limpieza del código: eliminación de comentarios y ajustes finales.</li>
+                        <li>Pruebas finales en equipos de laboratorio.</li>
+                        <li>Cierre y revisión de la bitácora completa.</li>
+                        <li><strong>Dannae:</strong> armado de la versión final estable del chatbot.</li>
+                        <li><strong>Emmanuel:</strong> verificación final de la conexión con Ollama y el modelo qwen2.5:3b.</li>
+                        <li><strong>Diana:</strong> revisión ortográfica y de formato de toda la documentación.</li>
+                        <li><strong>Uriel:</strong> confirmación de que no existan errores críticos en el uso normal.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TECNOLOGÍAS UTILIZADAS -->
+        <div class="section">
+            <h2>💻 Tecnologías Utilizadas</h2>
+            <ul class="task-list">
+                <li><strong>HTML:</strong> estructura del chat, controles, contenedores de mensajes y layout general.</li>
+                <li><strong>CSS:</strong> diseño visual (colores, sombras, tipografía, responsividad y estilo guinda institucional).</li>
+                <li><strong>JavaScript:</strong> lógica del chatbot, envío de mensajes, manejo del DOM, streaming y manejo de errores.</li>
+                <li><strong>MathJax:</strong> renderizado de ecuaciones matemáticas en formato LaTeX.</li>
+                <li><strong>Ollama:</strong> ejecución local del modelo de lenguaje <strong>qwen2.5:3b</strong>.</li>
+                <li><strong>Fetch API:</strong> comunicación entre la página web y el servidor local de Ollama.</li>
+            </ul>
+        </div>
+
+        <!-- ACTIVIDAD DE CIERRE: VIDEO -->
+        <div class="section">
+            <h2>🎬 Actividad de Cierre: Video Explicando el Tutor Matemático</h2>
+            <div class="tips-box">
+                <h4>📹 Producto Final Adicional</h4>
+                <p>
+                    Como cierre del proyecto, el equipo grabará un <strong>video explicando el funcionamiento de FletMentor_MAT_1.0</strong> 
+                    como chatbot educativo de matemáticas. En el video se debe:
+                </p>
+                <ul class="task-list">
+                    <li>Presentar el objetivo del proyecto y a los integrantes del equipo.</li>
+                    <li>Mostrar la interfaz del chat y los controles (nivel, streaming, limpiar chat).</li>
+                    <li>Realizar al menos dos consultas: una de nivel primaria y otra de nivel preparatoria o universidad.</li>
+                    <li>Mostrar un ejemplo donde aparezcan fórmulas renderizadas con <strong>MathJax</strong>.</li>
+                    <li>Explicar de forma sencilla que el modelo funciona con <strong>Ollama</strong> de forma local.</li>
+                    <li>Mencionar brevemente el rol que tuvo cada integrante en el desarrollo.</li>
+                </ul>
+                <p>
+                    Este video funcionará como evidencia del trabajo realizado y como material de apoyo para presentar el 
+                    proyecto a otros grupos y docentes.
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p>📘 Proyecto: FletMentor_MAT_1.0 – Chatbot Educativo de Matemáticas</p>
+            <p><strong>Equipo: Dannae · Emmanuel · Diana · Uriel</strong></p>
+            <p>Periodo de desarrollo: 1 de septiembre – 27 de noviembre de 2025</p>
+            <p>Asesor: Prof. Luis Alfonso Martínez Alfaro</p>
+        </footer>
+    </div>
+</body>
+</html>
